@@ -2,6 +2,8 @@ import server from '../src/server'
 import client from '../src/client'
 import fetch from 'node-fetch'
 
+const sleep = async (ms = 16) => new Promise(resolve => setTimeout(resolve, ms))
+
 describe('detox analytics tracker', () => {
   describe('given that the server is server.started when already running', () => {
     afterEach(() => {
@@ -38,8 +40,9 @@ describe('detox analytics tracker', () => {
       const events = [['login-btn-press', { string: 'hello', boolean: true, number: 5 }]]
       const expectedEvents = events.map(([eventName, params]) => ({ eventName, params }))
       for (const event of events) {
-        await analytics.trackEvent(...event)
+        analytics.trackEvent(...event)
       }
+      await sleep(400)
       const trackedEvents = server.getEvents('analytics.trackEvent')
       expect(trackedEvents).toEqual(expectedEvents)
     })
@@ -47,8 +50,9 @@ describe('detox analytics tracker', () => {
       const events = [['login-btn-press', { string: 'hello', boolean: true, number: 5 }]]
       const expectedEventNames = events.map(([eventName]) => eventName)
       for (const event of events) {
-        await analytics.trackEvent(...event)
+        analytics.trackEvent(...event)
       }
+      await sleep(400)
       const trackedEventNames = server.getEventsNames('analytics.trackEvent')
       expect(trackedEventNames).toEqual(expectedEventNames)
     })
@@ -62,8 +66,9 @@ describe('detox analytics tracker', () => {
       const expectedEvents = events.map(([eventName, params]) => ({ eventName, params }))
       const expectedEventNames = events.map(([eventName]) => eventName)
       for (const event of events) {
-        await analytics.trackEvent(...event)
+        analytics.trackEvent(...event)
       }
+      await sleep(400)
       const trackedEvents = server.getEvents('analytics.trackEvent')
       expect(trackedEvents).toEqual(expectedEvents)
       const trackedEventNames = server.getEventsNames('analytics.trackEvent')
@@ -84,8 +89,9 @@ describe('detox analytics tracker', () => {
       const expectedEvents = events.map(([eventName, params]) => ({ eventName, params }))
       const expectedEventNames = events.map(([eventName]) => eventName)
       for (const event of events) {
-        await analytics.trackEvent(...event)
+        analytics.trackEvent(...event)
       }
+      await sleep(400)
       const trackedEventsBefore = server.getEvents('analytics.trackEvent')
       expect(trackedEventsBefore).toEqual(expectedEvents)
       const trackedEventNamesBefore = server.getEventsNames('analytics.trackEvent')

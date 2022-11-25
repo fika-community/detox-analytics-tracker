@@ -21,7 +21,9 @@ class Server {
     const app = connect()
     app.use(bodyParser.json())
     app.use('/track', (req, res) => {
-      this.#recordEvent(req.body.call, req.body.arguments)
+      for (const event of req.body) {
+        this.#recordEvent(event.call, event.args)
+      }
       res.end()
     })
     const server = http.createServer(app)
