@@ -24,10 +24,10 @@
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.2",
     "@babel/plugin-transform-modules-commonjs": "^7.19.6",
-    "jest": "29.3.1"
+    "jest": "29.3.1",
+    "node-fetch": "3.3.0"
   },
   "dependencies": {
-    "node-fetch": "3.3.0",
     "body-parser": "1.20.1",
     "connect": "3.7.0",
     "http": "0.0.1-security"

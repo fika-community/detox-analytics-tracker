@@ -5,6 +5,14 @@ import fetch from 'node-fetch'
 const sleep = async (ms = 16) => new Promise(resolve => setTimeout(resolve, ms))
 
 describe('detox analytics tracker', () => {
+  let originalFetch
+  beforeAll(() => {
+    originalFetch = global.fetch
+    global.fetch = fetch
+  })
+  afterAll(() => {
+    global.fetch = originalFetch
+  })
   describe('given that the server is server.started when already running', () => {
     afterEach(() => {
       server.stop()

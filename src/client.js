@@ -1,4 +1,3 @@
-import fetch from 'node-fetch'
 import buffer from './buffer'
 
 class Client {

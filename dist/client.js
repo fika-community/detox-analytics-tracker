@@ -4,7 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _nodeFetch = _interopRequireDefault(require("node-fetch"));
 var _buffer = _interopRequireDefault(require("./buffer"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 class Client {
@@ -18,7 +17,7 @@ class Client {
   };
 
   #track = (0, _buffer.default)(events => {
-    return (0, _nodeFetch.default)(`${this.#options.server[this.#platform]}/track`, {
+    return fetch(`${this.#options.server[this.#platform]}/track`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
