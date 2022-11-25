@@ -1,0 +1,31 @@
+{
+  "name": "detox-analytics-tracker",
+  "version": "1.0.0",
+  "description": "A client/server proxy to collect analytics events in order to be bale to compare them in e2e tests.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest"
+  },
+  "keywords": [
+    "analytics",
+    "e2e",
+    "detox",
+    "test"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fika-community/detox-analytics-tracker.git"
+  },
+  "author": "Slex <slex@fika.community>",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "9.3.1"
+  },
+  "dependencies": {
+    "node-fetch": "3.3.0",
+    "body-parser": "1.20.1",
+    "connect": "3.7.0",
+    "http": "0.0.1-security"
+  }
+}
