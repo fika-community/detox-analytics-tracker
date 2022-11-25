@@ -19,9 +19,10 @@ class Analytics {
 analytics.e2e.js
 
 ```js
-import { client } from 'detox-analytics-tracker'
+import { Platform } from 'react-native'
+import client from 'detox-analytics-tracker/src/client'
 
-export default client.getProxy('analytics')
+export default client.getProxy('analytics', Platform.OS)
 ```
 
 ## configuring the react native bundler to use the proxy analytics object for e2e tests
