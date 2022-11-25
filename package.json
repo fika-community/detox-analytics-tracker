@@ -24,7 +24,7 @@
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.2",
     "@babel/plugin-transform-modules-commonjs": "^7.19.6",
-    "jest": "9.3.1"
+    "jest": "29.3.1"
   },
   "dependencies": {
     "node-fetch": "3.3.0",
