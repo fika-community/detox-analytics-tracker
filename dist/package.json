@@ -2,12 +2,11 @@
   "name": "detox-analytics-tracker",
   "version": "1.0.0",
   "description": "A client/server proxy to collect analytics events in order to be bale to compare them in e2e tests.",
-  "type": "module",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "babel src -d dist --plugins @babel/plugin-transform-modules-commonjs && node movePackage.js",
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
-    "release": "npm version patch && npm run build && cd dist && npm publish"
+    "publish": "npm version patch"
   },
   "keywords": [
     "analytics",
