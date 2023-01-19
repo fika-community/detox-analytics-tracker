@@ -7,7 +7,7 @@
   "scripts": {
     "build": "babel src -d dist --plugins @babel/plugin-transform-modules-commonjs && node movePackage.js",
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
-    "release": "npm version patch && npm run build && cd dist && npm publish"
+    "release": "npm version patch && npm run build && cd dist && npm publish && cd .."
   },
   "keywords": [
     "analytics",
