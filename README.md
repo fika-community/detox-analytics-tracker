@@ -76,7 +76,7 @@ describe('Login', () => {
     })
     afterEach(async () => {
       await device.uninstallApp()
-      server.flush()
+      await server.flush()
     })
     it('should track analytics events', async () => {
       const trackedEventNames = server.getEventsNames('analytics.trackEvent')
