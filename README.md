@@ -66,8 +66,8 @@ describe('Login', () => {
   beforeAll(() => {
     server.start()
   })
-  afterAll(() => {
-    server.stop()
+  afterAll(async () => {
+    await server.stop()
   })
   describe('given that a user logs in successfully', () => {
     beforeEach(async () => {

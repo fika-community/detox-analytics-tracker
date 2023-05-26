@@ -53,13 +53,13 @@ class Server {
   getEventsNames = call => {
     return this.#state.eventNames[call] || defaultEventNames
   }
-  stop = () => {
-    if (!this.#state) {
+  stop = async () => {
+    if (!this.#state.server) {
       throw new Error('Server is already stopped')
     }
-    this.#state.server.close()
+    this.#state.server?.close()
     this.#state.server = undefined
-    this.flush()
+    await this.flush()
   }
 }
 

@@ -14,8 +14,8 @@ describe('detox analytics tracker', () => {
     global.fetch = originalFetch
   })
   describe('given that the server is server.started when already running', () => {
-    afterEach(() => {
-      server.stop()
+    afterEach(async () => {
+      await server.stop()
     })
     it('should throw an error on server.start()', () => {
       expect(() => {
@@ -28,11 +28,13 @@ describe('detox analytics tracker', () => {
     beforeEach(() => {
       server.start()
     })
-    it('should throw an error on server.stop()', () => {
-      expect(() => {
-        server.stop()
-        server.stop()
-      }).toThrow()
+    it('should throw an error on server.stop()', async () => {
+      let errored = false
+      await server.stop()
+      await server.stop().catch(error => {
+        errored = true
+      })
+      expect(errored).toEqual(true)
     })
   })
   describe('given that a call is made via the client proxy', () => {
@@ -41,8 +43,8 @@ describe('detox analytics tracker', () => {
       analytics = client.getProxy('analytics', 'ios')
       server.start()
     })
-    afterEach(() => {
-      server.stop()
+    afterEach(async () => {
+      await server.stop()
     })
     it('should be received by the server and made available via server.getEvents', async () => {
       const events = [['login-btn-press', { string: 'hello', boolean: true, number: 5 }]]
@@ -89,8 +91,8 @@ describe('detox analytics tracker', () => {
       analytics = client.getProxy('analytics', 'ios')
       server.start()
     })
-    afterEach(() => {
-      server.stop()
+    afterEach(async () => {
+      await server.stop()
     })
     it('should clear the results of getEvents and getEventNames', async () => {
       const events = [['login-btn-press', { string: 'hello', boolean: true, number: 5 }]]
@@ -104,7 +106,7 @@ describe('detox analytics tracker', () => {
       expect(trackedEventsBefore).toEqual(expectedEvents)
       const trackedEventNamesBefore = server.getEventsNames('analytics.trackEvent')
       expect(trackedEventNamesBefore).toEqual(expectedEventNames)
-      server.flush()
+      await server.flush()
       const trackedEventsAfter = server.getEvents('analytics.trackEvent')
       expect(trackedEventsAfter).toEqual([])
       const trackedEventNamesAfter = server.getEventsNames('analytics.trackEvent')
