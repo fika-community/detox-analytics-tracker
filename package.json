@@ -1,6 +1,6 @@
 {
   "name": "detox-analytics-tracker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A client/server proxy to collect analytics events in order to be bale to compare them in e2e tests.",
   "type": "module",
   "main": "src/index.js",
