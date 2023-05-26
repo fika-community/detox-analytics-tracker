@@ -2,6 +2,7 @@ import connect from 'connect'
 import http from 'http'
 import bodyParser from 'body-parser'
 
+const sleep = ms => new Promise(resolve => setTimeout(() => resolve(), ms))
 const defaultEvents = []
 const defaultEventNames = []
 class Server {
@@ -41,7 +42,8 @@ class Server {
     this.#state.events[call].push({ eventName, params })
     this.#state.eventNames[call].push(eventName)
   }
-  flush = () => {
+  flush = async () => {
+    await sleep(1000) // sleep so that all incoming events are caught up before flushing
     this.#state.events = {}
     this.#state.eventNames = {}
   }
